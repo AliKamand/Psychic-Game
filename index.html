@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<title>Psychic Game</title>
+</head>
+<body>
+		<div id="game">
+			<p><h1><strong><em>Psychic Game</em></strong></h1><br><strong>Guess what letter I'm thinking of</strong></p>
+		</div>
+		<script type="text/javascript">
+			var options = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+			var computerGuess = options[Math.floor(Math.random()*options.length)];
+			var userGuessO = {
+                              wins : 0 ,
+                              losses: 0 ,
+                              guessesLeft : 9 ,
+                              yourGuessesSoFar: ""
+			                  }			
+			document.onkeyup = function(event){
+			var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+			//console.log(userGuess);
+			if (userGuess=='a' || userGuess=='b' || userGuess=='c' || userGuess=='d' || userGuess=='e' || userGuess=='f' || userGuess=='g' || userGuess=='h' ||  userGuess=='i' || userGuess=='j' || userGuess=='k' || userGuess=='l' || userGuess=='m' || userGuess=='n' || userGuess=='o' || userGuess=='p' || userGuess=='q' || userGuess=='r' || userGuess=='s' || userGuess=='t' || userGuess=='u' || userGuess=='v' || userGuess=='w' || userGuess=='x' ||  userGuess=='y' || userGuess=='z'){
+												    if (userGuess==computerGuess){
+																				  userGuessO.wins++;
+																				  alert("WOW You won!");
+																				  userGuessO.guessesLeft=9;
+																				  userGuessO.yourGuessesSoFar="";
+			                                                                     }
+			                                        else if(userGuessO.guessesLeft > 1) {
+			                                    										    userGuessO.guessesLeft=userGuessO.guessesLeft-1;
+			                                    	                                        userGuessO.yourGuessesSoFar = userGuessO.yourGuessesSoFar + userGuess;
+			                                                                             }
+			                                    		
+			                                    	      else  {
+			                                    	                userGuessO.losses++;
+			                                    	                alert("AUCH You lost!");
+			                                    	    			userGuessO.guessesLeft=9;
+																	userGuessO.yourGuessesSoFar="";
+			                                    	            }
+			                                         
+												 }
+			else {
+				alert("Please choose a letter!");
+			     }
+			var html = "<p><h1><strong><em>Psychic Game</em></strong></h1><br><strong>Guess what letter I'm thinking of</strong></p>" +
+					   "<p>wins: " + userGuessO.wins + "</p>" +
+					   "<p>losses: " + userGuessO.losses + "</p>" +
+					   "<p>Guesses Left: " + userGuessO.guessesLeft + "</p>" +
+					   "<p>Your Guesses so far: " + userGuessO.yourGuessesSoFar + "</p>";
+				document.querySelector("#game").innerHTML = html;
+								}
+
+		</script>
+</body>
+</html>
